@@ -1,0 +1,11 @@
+visdom
+dominate
+tqdm
+gitpython
+ipython
+opencv-python
+psutil
+tensorboard
+seaborn
+albumentations
+pycocotools
