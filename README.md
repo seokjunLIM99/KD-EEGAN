@@ -20,20 +20,14 @@ Open the file script.py
 
 Change the mode variable to "test"
 
-Run the following command:
-
-bash
-코드 복사
-python script.py
-🧪 This will perform model inference using the pretrained weights.
-
 💾 Pretrained Weights & Configuration Files
 You can download the following resources from Google Drive:
 
-Pretrained Teacher weights
+- Pretrained Teacher weights
+- Proposed model weights
+- YOLO pretrained weights
+- YOLO configuration files (.cfg)
+- dataset
 
-Proposed model weights
-
-YOLO pretrained weights
-
-YOLO configuration files (.cfg)
+🔗 Access the files on Google Drive
+https://drive.google.com/drive/folders/1zV4KpEkIo4yXC1EwQqfLjaM6wXgsdZuT?usp=sharing
