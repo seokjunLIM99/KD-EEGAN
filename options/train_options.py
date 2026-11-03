@@ -1,0 +1,37 @@
+from .base_options import BaseOptions
+
+
+class TrainOptions(BaseOptions):
+    def initialize(self):
+        BaseOptions.initialize(self)
+        self.parser.set_defaults(vgg=1, patchD_3=4, skip=1, vgg_choose='relu5_1')
+        self.parser.add_argument('--display_freq', type=int, default=30, help='frequency of showing training results on screen')
+        self.parser.add_argument('--print_freq', type=int, default=100, help='frequency of showing training results on console')
+        self.parser.add_argument('--save_latest_freq', type=int, default=5000, help='frequency of saving the latest results')
+        self.parser.add_argument('--save_epoch_freq', type=int, default=1, help='frequency of saving checkpoints at the end of epochs')
+        self.parser.add_argument('--continue_train', action='store_true', help='continue training: load the latest model')
+        self.parser.add_argument('--phase', type=str, default='train', help='train, val, test, etc')
+        self.parser.add_argument('--which_epoch', type=str, default='latest', help='which epoch to load? set to latest to use latest cached model')
+        self.parser.add_argument('--niter', type=int, default=150, help='# of iter at starting learning rate')
+        self.parser.add_argument('--niter_decay', type=int, default=150, help='# of iter to linearly decay learning rate to zero')
+        self.parser.add_argument('--beta1', type=float, default=0.9, help='first Adam beta')
+        self.parser.add_argument('--lr', type=float, default=0.0001, help='initial learning rate for adam')
+        self.parser.add_argument('--lr_D', type=float, default=0.0001, help='initial learning rate for adam')
+        self.parser.add_argument('--no_lsgan', action='store_true', help='do *not* use least square GAN, if false, use vanilla GAN')
+        self.parser.add_argument('--pool_size', type=int, default=50, help='the size of image buffer that stores previously generated images')
+        self.parser.add_argument('--no_html', action='store_true', help='do not save intermediate training results to [opt.checkpoints_dir]/[opt.name]/web/')
+        self.parser.add_argument('--config', type=str, default='configs/unit_gta2city_folder.yaml', help='Path to the config file.')
+        self.parser.add_argument('--num_workers', type=int, default=4, help='Number of data loading workers')
+        self.parser.add_argument('--teacher_weight', type=str, default='weights/teacher.pth', help='teacher checkpoint')
+        self.parser.add_argument('--detector_cfg', type=str, default='models/detect/yolov9-c.yaml', help='YOLOv9/GELAN config used by DSFL')
+        self.parser.add_argument('--detector_weight', type=str, default='weights/yolov9-smoke.pt', help='pretrained detector weight used by DSFL')
+        self.parser.add_argument('--weights_dir', type=str, default='weights/restoration', help='output directory for restoration checkpoints')
+        self.parser.add_argument('--lambda_spatial', type=float, default=0.2, help='spatial feature loss weight')
+        self.parser.add_argument('--lambda_fft', type=float, default=0.2, help='frequency feature loss weight')
+        self.parser.add_argument('--lambda_gan', type=float, default=1.0, help='student GAN loss weight')
+        self.parser.add_argument('--lambda_vgg', type=float, default=1.0, help='student VGG loss weight')
+        self.parser.add_argument('--lambda_pixel', type=float, default=1.0, help='student pixel L1 loss weight')
+        self.parser.add_argument('--lambda_kd_shallow', type=float, default=0.5, help='shallow KD loss weight')
+        self.parser.add_argument('--lambda_kd_deep', type=float, default=0.5, help='ATSPP deep KD loss weight')
+        self.parser.add_argument('--lambda_student', type=float, default=1.0, help='student loss weight')
+        self.isTrain = True
